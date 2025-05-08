@@ -387,14 +387,21 @@
         document.addEventListener('DOMContentLoaded', function() {
             // 選挙日までのカウントダウン機能
             function updateElectionCountdown() {
-                const electionDate = new Date('2025-05-18');
-                const today = new Date();
+                // 固定日付を使用（2025年5月9日を現在日として設定）
+                const today = new Date(2025, 4, 9); // JavaScriptでは月は0始まりなので、5月は4
+                const electionDate = new Date(2025, 4, 18); // 5月18日
                 
-                // 日付だけを比較するため時間情報をリセット
+                // 日付のみを比較するため、時間情報をリセット
                 today.setHours(0, 0, 0, 0);
+                electionDate.setHours(0, 0, 0, 0);
                 
                 // 残り日数を計算（ミリ秒を日数に変換）
-                const daysRemaining = Math.ceil((electionDate - today) / (1000 * 60 * 60 * 24));
+                const diffTime = electionDate - today;
+                const daysRemaining = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+                
+                console.log('今日の日付:', today.toLocaleDateString());
+                console.log('選挙日:', electionDate.toLocaleDateString());
+                console.log('残り日数:', daysRemaining);
                 
                 // カウントダウン表示を更新
                 const countdownElement = document.getElementById('election-countdown');
