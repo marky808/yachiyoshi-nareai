@@ -1,0 +1,925 @@
+/* 全体のスタイル */
+body {
+    font-family: 'Noto Sans JP', sans-serif;
+    line-height: 1.7;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+}
+
+/* コンテナ */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* ヘッダー */
+header {
+    background: linear-gradient(135deg, #1e5799 0%,#2989d8 50%,#207cca 51%,#7db9e8 100%);
+    color: white;
+    padding: 30px 0;
+    text-align: center;
+    position: relative;
+}
+
+.header-image {
+    background-image: url('../images/sakura.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.header-image::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: 1;
+}
+
+.header-content {
+    position: relative;
+    z-index: 2;
+}
+
+h1 {
+    font-size: 2.8rem;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.tagline {
+    font-size: 1.4rem;
+    margin-bottom: 20px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.cta-button {
+    display: inline-block;
+    background-color: #e74c3c;
+    color: white;
+    padding: 12px 24px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 1.1rem;
+    transition: background-color 0.3s;
+    margin-top: 20px;
+}
+
+.cta-button:hover {
+    background-color: #c0392b;
+}
+
+/* メインコンテンツ */
+section {
+    padding: 60px 0;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 2rem;
+    color: #1e5799;
+}
+
+.section-subtitle {
+    text-align: center;
+    margin: -20px auto 40px;
+    max-width: 700px;
+    font-size: 1.1rem;
+    color: #666;
+}
+
+/* 問題提起セクション */
+.problem {
+    background-color: white;
+}
+
+.problem-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.problem-card {
+    background-color: #f8f8f8;
+    border-radius: 8px;
+    padding: 25px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+}
+
+.problem-card:hover {
+    transform: translateY(-5px);
+}
+
+.problem-icon {
+    font-size: 2.5rem;
+    color: #e74c3c;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.problem-title {
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+    color: #1e5799;
+}
+
+/* 馴れ合い政治の実態セクション - 新デザイン */
+.reality {
+    background-color: #f8f9fa;
+    position: relative;
+    overflow: hidden;
+}
+
+.reality::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(135deg, rgba(30, 87, 153, 0.05) 0%, rgba(125, 185, 232, 0.05) 100%);
+    pointer-events: none;
+}
+
+/* タブナビゲーション - 改良版 */
+.tab-nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 30px;
+}
+
+.tab-btn {
+    padding: 12px 20px;
+    background-color: #eef2f7;
+    border: none;
+    border-radius: 30px;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #555;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.tab-btn::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(255,255,255,0.15) 0%, rgba(0,0,0,0.05) 100%);
+    pointer-events: none;
+}
+
+.tab-btn:after {
+    content: "";
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    background: rgba(255,255,255,0.5);
+    border-radius: 50%;
+    top: -5px;
+    right: -5px;
+    transition: 0.3s;
+    opacity: 0;
+}
+
+.tab-btn:hover {
+    background-color: #d8e4f3;
+    transform: translateY(-3px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.tab-btn:hover:after {
+    width: 150%;
+    height: 150%;
+    opacity: 0.1;
+    top: -20px;
+    right: -20px;
+}
+
+.tab-btn.active {
+    background-color: #1e5799;
+    color: white;
+    box-shadow: 0 4px 12px rgba(30, 87, 153, 0.3);
+}
+
+.tab-icon {
+    font-size: 1.2rem;
+    margin-right: 8px;
+    display: inline-block;
+}
+
+.tab-label {
+    position: relative;
+}
+
+.tab-label:after {
+    content: "";
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: currentColor;
+    transition: width 0.2s ease;
+}
+
+.tab-btn:hover .tab-label:after {
+    width: 100%;
+}
+
+/* タブの説明テキスト */
+.tabs-instruction {
+    text-align: center;
+    margin: 0 auto 15px;
+    max-width: 600px;
+}
+
+.tabs-instruction p {
+    display: inline-block;
+    background-color: #fff3cd;
+    border-radius: 20px;
+    padding: 8px 20px;
+    margin: 0 auto;
+    font-size: 1rem;
+    color: #856404;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border: 1px dashed #ffeeba;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(255, 193, 7, 0.4);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(255, 193, 7, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(255, 193, 7, 0);
+    }
+}
+
+/* カードレイアウト */
+.reality-cards {
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+    min-height: 350px;
+}
+
+.reality-card {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px);
+    transition: all 0.4s ease-in-out;
+}
+
+.reality-card.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    position: relative;
+}
+
+.card-inner {
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+    overflow: hidden;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+}
+
+.card-front {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.card-icon {
+    font-size: 3rem;
+    margin-bottom: 15px;
+    display: inline-block;
+    background-color: rgba(30, 87, 153, 0.1);
+    width: 100px;
+    height: 100px;
+    line-height: 100px;
+    border-radius: 50%;
+    text-align: center;
+}
+
+.card-front h3 {
+    font-size: 1.8rem;
+    color: #1e5799;
+    margin-bottom: 5px;
+    font-weight: 700;
+}
+
+.card-back {
+    flex: 1;
+}
+
+.card-back p {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    margin-bottom: 20px;
+}
+
+.card-fact {
+    background-color: #f8f9fa;
+    border-left: 4px solid #e74c3c;
+    padding: 15px;
+    margin-top: 20px;
+    border-radius: 4px;
+}
+
+.fact-label {
+    display: inline-block;
+    background-color: #e74c3c;
+    color: white;
+    padding: 3px 8px;
+    font-size: 0.75rem;
+    border-radius: 3px;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+/* サマリーボックス */
+.reality-summary {
+    margin-top: 40px;
+    display: flex;
+    align-items: center;
+    background-color: #fff3cd;
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    border-left: 5px solid #ffc107;
+}
+
+.summary-icon {
+    font-size: 2.5rem;
+    margin-right: 20px;
+    color: #e74c3c;
+}
+
+.summary-content {
+    flex: 1;
+}
+
+.summary-content h3 {
+    color: #e74c3c;
+    margin-bottom: 10px;
+    font-size: 1.4rem;
+}
+
+.summary-content p {
+    margin: 0;
+    line-height: 1.7;
+}
+
+.highlight {
+    background-color: rgba(231, 76, 60, 0.15);
+    padding: 2px 5px;
+    border-radius: 3px;
+    font-weight: 600;
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 768px) {
+    .tab-nav {
+        flex-direction: row;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        padding-bottom: 10px;
+        margin: 0 -20px 20px;
+        padding-left: 20px;
+        padding-right: 20px;
+        gap: 10px;
+        position: relative;
+    }
+    
+    .tab-nav:after {
+        content: "←スワイプ→";
+        position: absolute;
+        bottom: -5px;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 0.7rem;
+        color: #999;
+        background: #fff;
+        padding: 0 10px;
+        border-radius: 10px;
+    }
+    
+    .tab-btn {
+        flex: 0 0 auto;
+        font-size: 0.9rem;
+        padding: 10px 15px;
+        white-space: nowrap;
+    }
+    
+    .tab-icon {
+        margin-right: 4px;
+    }
+    
+    .tabs-instruction p {
+        font-size: 0.9rem;
+        padding: 6px 15px;
+    }
+    
+    .reality-summary {
+        flex-direction: column;
+        text-align: center;
+        padding: 20px 15px;
+    }
+    
+    .summary-icon {
+        margin-right: 0;
+        margin-bottom: 15px;
+    }
+    
+    .card-inner {
+        padding: 20px;
+    }
+    
+    .card-front h3 {
+        font-size: 1.5rem;
+    }
+    
+    .card-icon {
+        width: 80px;
+        height: 80px;
+        line-height: 80px;
+        font-size: 2.5rem;
+    }
+    
+    .card-back p {
+        font-size: 1rem;
+    }
+    
+    .reality-card {
+        min-height: 400px;
+    }
+    
+    .reality-cards {
+        min-height: 450px;
+    }
+}
+
+/* 選挙直前の状況セクション */
+.election-situation {
+    background-color: white;
+}
+
+.video-container {
+    margin: 30px auto;
+    max-width: 800px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.image-gallery {
+    margin: 40px 0;
+}
+
+.gallery-description {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.gallery-description h3 {
+    color: #e74c3c;
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+}
+
+.gallery-images {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.gallery-image {
+    flex: 1;
+    min-width: 300px;
+    max-width: 400px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.3s;
+}
+
+.gallery-image:hover {
+    transform: translateY(-5px);
+}
+
+.gallery-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.image-caption {
+    padding: 10px;
+    text-align: center;
+    background-color: #f8f8f8;
+    margin: 0;
+}
+
+/* 市民への影響セクション */
+.impact {
+    background-color: #f5f5f5;
+}
+
+.impact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.impact-card {
+    background-color: #f8f8f8;
+    border-radius: 8px;
+    padding: 25px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.impact-icon {
+    font-size: 2rem;
+    color: #1e5799;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.impact-title {
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.quote {
+    background-color: #f5f5f5;
+    border-left: 4px solid #1e5799;
+    padding: 15px;
+    margin-top: 20px;
+    font-style: italic;
+}
+
+.quote-author {
+    font-weight: bold;
+    text-align: right;
+    margin-top: 10px;
+}
+
+/* 解決策提案セクション */
+.solution {
+    background-color: #eef2f7;
+}
+
+.steps {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-top: 40px;
+}
+
+.step {
+    flex: 1;
+    min-width: 200px;
+    text-align: center;
+    padding: 0 15px;
+    margin-bottom: 30px;
+}
+
+.step-number {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    background-color: #1e5799;
+    color: white;
+    border-radius: 50%;
+    line-height: 50px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.step-title {
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    color: #1e5799;
+}
+
+/* ご意見フォームセクション */
+.feedback-form {
+    background-color: #eef2f7;
+}
+
+.form-container {
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: white;
+    border-radius: 8px;
+    padding: 30px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+input, textarea, select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+textarea {
+    height: 120px;
+}
+
+.submit-button {
+    background-color: #1e5799;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    font-size: 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.submit-button:hover {
+    background-color: #16487a;
+}
+
+.privacy-notice {
+    margin-top: 20px;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+/* フッター */
+footer {
+    background-color: #333;
+    color: white;
+    padding: 40px 0;
+}
+
+.footer-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.footer-section {
+    flex: 1;
+    min-width: 200px;
+    margin-bottom: 30px;
+    padding: 0 15px;
+}
+
+.footer-title {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.footer-title::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 40px;
+    height: 2px;
+    background-color: #e74c3c;
+}
+
+.footer-links {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-links li {
+    margin-bottom: 10px;
+}
+
+.footer-links a {
+    color: #ddd;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.footer-links a:hover {
+    color: white;
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 30px;
+    margin-top: 30px;
+    border-top: 1px solid #444;
+}
+
+/* アニメーション */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animated {
+    animation: fadeInUp 0.6s ease-out;
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2rem;
+    }
+    
+    .tagline {
+        font-size: 1.1rem;
+    }
+    
+    .reality-image {
+        margin-right: 0;
+        margin-bottom: 30px;
+        min-height: 200px;
+    }
+    
+    .reality-container {
+        flex-direction: column;
+    }
+    
+    .steps {
+        flex-direction: column;
+    }
+    
+    .gallery-images {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .video-container {
+        margin: 20px auto;
+    }
+}
+
+/* チェックボックスのスタイル追加 */
+.checkbox-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.checkbox-group label {
+    display: inline-flex;
+    align-items: center;
+    margin-right: 15px;
+    font-weight: normal;
+}
+
+.checkbox-group input[type="checkbox"] {
+    width: auto;
+    margin-right: 5px;
+}
+
+/* 必須項目のマーク */
+.required {
+    color: #e74c3c;
+}
+
+/* 縦型動画コンテナのスタイル */
+.vertical-video-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 30px 0;
+}
+
+.vertical-video-frame {
+    position: relative;
+    width: 320px;
+    height: 570px;
+    background-color: #000;
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+}
+
+#vertical-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.play-button {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: 1;
+    transition: opacity 0.3s ease;
+}
+
+.play-icon {
+    font-size: 60px;
+    color: white;
+    opacity: 0.8;
+}
+
+.play-button:hover .play-icon {
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+.video-caption {
+    margin-top: 15px;
+    font-size: 0.9rem;
+    color: #555;
+    text-align: center;
+}
+
+/* 動画説明用のスタイル */
+.video-description {
+    margin-top: 15px;
+    max-width: 320px;
+    text-align: center;
+    background-color: #f8f9fa;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.video-description p {
+    margin: 0;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: #333;
+}
+
+@media (max-width: 768px) {
+    .vertical-video-frame {
+        width: 280px;
+        height: 500px;
+    }
+
+    .video-description {
+        max-width: 280px;
+    }
+}
