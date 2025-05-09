@@ -199,11 +199,19 @@
                 </div>
                 
                 <div class="image-gallery">
-                    <div class="gallery-description">
-                        <h3>これは圧力？</h3>
-                        <p>・当団体の活動チラシの掲載が拒否される自体が発生<br>
-                        ・連日再生数が伸び続けた動画がいきなり著作権侵害で収益停止という事態になったようです<br><br>
-                        これは、情報発信を妨げる何かが<br>起こっているのでしょうか？</p>
+                    <div class="gallery-description alert-box">
+                        <div class="alert-icon">⚠️</div>
+                        <h3 class="alert-title">これは圧力？</h3>
+                        <div class="alert-content">
+                            <ul class="evidence-list">
+                                <li><span class="evidence-marker">!</span> 当団体の活動チラシの掲載が拒否される事態が発生</li>
+                                <li><span class="evidence-marker">!</span> 連日再生数が伸び続けた動画がいきなり著作権侵害で収益停止という事態になったようです</li>
+                            </ul>
+                            
+                            <div class="alert-question">
+                                <p>これは、<span class="highlight-text">情報発信を妨げる何か</span>が<br>起こっているのでしょうか？</p>
+                            </div>
+                        </div>
                     </div>
                     
                     <div class="gallery-images">
@@ -358,6 +366,13 @@
         </section>
     </main>
     
+    <!-- TOPに戻るボタン -->
+    <div id="back-to-top" class="back-to-top">
+        <a href="#" title="ページトップへ戻る">
+            <span class="back-to-top-icon">↑</span>
+        </a>
+    </div>
+    
     <!-- フッター -->
     <footer>
         <div class="container footer-container">
@@ -374,6 +389,7 @@
                     <li><a href="#impact">市民への影響</a></li>
                     <li><a href="#solution">解決策提案</a></li>
                     <li><a href="#feedback-form">ご意見フォーム</a></li>
+                    <li><a href="#">ページトップへ</a></li>
                 </ul>
             </div>
         </div>
@@ -412,6 +428,31 @@
             
             // カウントダウンを初期化
             updateElectionCountdown();
+            
+            // アンカーリンクのスムーズスクロール機能
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') {
+                        // ページトップへスクロール
+                        window.scrollTo({
+                            top: 0,
+                            behavior: 'smooth'
+                        });
+                    } else {
+                        // 特定のセクションへスクロール
+                        const targetElement = document.querySelector(targetId);
+                        if (targetElement) {
+                            targetElement.scrollIntoView({
+                                behavior: 'smooth',
+                                block: 'start'
+                            });
+                        }
+                    }
+                });
+            });
             
             // 縦型動画の初期化と再生機能
             const videoFrame = document.getElementById('video-frame');
@@ -475,6 +516,17 @@
                         }
                     });
                 });
+            });
+
+            // TOPに戻るボタンの表示/非表示制御
+            const backToTop = document.getElementById('back-to-top');
+            
+            window.addEventListener('scroll', function() {
+                if (window.pageYOffset > 300) {
+                    backToTop.classList.add('show');
+                } else {
+                    backToTop.classList.remove('show');
+                }
             });
         });
     </script>
