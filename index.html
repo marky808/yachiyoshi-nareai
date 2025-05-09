@@ -28,16 +28,51 @@
                 
                 <!-- 縦型動画コンテナ -->
                 <div class="vertical-video-container">
+                    <!-- 動画フレーム - MP4ファイルを使用、最初のフレームをサムネイルとして表示 -->
                     <div class="vertical-video-frame" id="video-frame">
                         <div class="play-button">
                             <span class="play-icon">▶</span>
                         </div>
-                        <video id="vertical-video" preload="metadata" poster="movie/youtube.mp4#t=0.1" playsinline muted>
+                        <video id="vertical-video" preload="auto" poster="" playsinline muted>
                             <source src="movie/youtube.mp4" type="video/mp4">
                             お使いのブラウザは動画再生に対応していません。
                         </video>
                     </div>
                     <p class="video-caption">タップまたはクリックで再生</p>
+
+                    <!-- YouTube風のステータス表示 (維持) -->
+                    <div class="youtube-embed-wrapper">
+                        <a href="https://www.youtube.com/watch?v=csLqxDdXzrQ" target="_blank" class="youtube-view-link">YouTubeで視聴する</a>
+                        
+                        <a href="https://www.youtube.com/watch?v=csLqxDdXzrQ" target="_blank" class="youtube-stats-link">
+                            <div class="youtube-stats">
+                                <div class="stat-item">
+                                    <svg viewBox="0 0 24 24" width="24" height="24">
+                                        <path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z" fill="#065fd4"></path>
+                                    </svg>
+                                    <span>20万+</span>
+                                </div>
+                                <div class="stat-item">
+                                    <svg viewBox="0 0 24 24" width="24" height="24">
+                                        <path d="M20 2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h14l4 4V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z" fill="#909090"></path>
+                                    </svg>
+                                    <span>857+</span>
+                                </div>
+                            </div>
+                        </a>
+                        
+                        <div class="youtube-button-container">
+                            <button id="load-youtube-btn" class="youtube-button">
+                                実際の動画を見る
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div id="youtube-frame-container" class="youtube-frame-container">
+                        <div class="close-youtube-btn">&times;</div>
+                        <div id="youtube-player"></div>
+                    </div>
+
                     <div class="video-impact-box">
                         <div class="video-impact-header">
                             <div class="youtube-icon">
@@ -61,7 +96,7 @@
                         <div class="alert-content">
                             <ul class="evidence-list">
                                 <li><span class="evidence-marker">!</span> 当団体の活動チラシの掲載が拒否される事態が発生</li>
-                                <li><span class="evidence-marker">!</span> 連日再生数が伸び続けた動画がいきなり著作権侵害で収益停止という事態になったようです</li>
+                                <li><span class="evidence-marker">!</span> 連日再生数が伸び続けた動画がいきなり差別的または中傷的なコンテンツとして収益停止という事態になったようです</li>
                             </ul>
                             
                             <div class="alert-question">
@@ -72,12 +107,12 @@
                     
                     <div class="gallery-images">
                         <div class="gallery-image">
-                            <img src="/api/placeholder/400/300" alt="著作権侵害証拠画像">
-                            <p class="image-caption">著作権侵害証拠画像</p>
+                            <img src="images/toukou.png" alt="動画制限の証拠">
+                            <p class="image-caption">動画主の方が動画の制限があると証言されています！これはどういう事？</p>
                         </div>
                         <div class="gallery-image">
-                            <img src="/api/placeholder/400/300" alt="チラシ拒否イラスト">
-                            <p class="image-caption">チラシ拒否イラスト</p>
+                            <img src="images/ng.png" alt="チラシ拒否イラスト">
+                            <p class="image-caption">当団体の活動チラシの掲載が拒否される事態が発生！</p>
                         </div>
                     </div>
                 </div>
@@ -465,70 +500,22 @@
                 });
             });
             
-            // 縦型動画の初期化と再生機能
+            // 動画再生機能
             const videoFrame = document.getElementById('video-frame');
             const verticalVideo = document.getElementById('vertical-video');
-            const playButton = document.querySelector('.play-button');
             
             if (videoFrame && verticalVideo) {
-                // モバイルでサムネイルを確実に表示するための処理
-                verticalVideo.addEventListener('loadeddata', function() {
-                    // 動画が読み込まれたら一時的に再生して最初のフレームを表示し、すぐに一時停止
-                    verticalVideo.currentTime = 0.1;
-                    if (verticalVideo.paused) {
-                        const showFirstFrame = function() {
-                            verticalVideo.pause();
-                            // イベントリスナーを削除（一度だけ実行）
-                            verticalVideo.removeEventListener('timeupdate', showFirstFrame);
-                        };
-                        verticalVideo.addEventListener('timeupdate', showFirstFrame);
-                        verticalVideo.play().catch(function(error) {
-                            console.log('自動再生できませんでした（モバイルの制限）:', error);
-                        });
-                    }
-                });
-                
-                // クリックで再生・一時停止
                 videoFrame.addEventListener('click', function() {
                     if (verticalVideo.paused) {
-                        verticalVideo.play().then(function() {
-                            playButton.style.opacity = '0';
-                        }).catch(function(error) {
-                            console.log('再生エラー:', error);
-                        });
+                        verticalVideo.play();
+                        videoFrame.classList.add('playing');
                     } else {
                         verticalVideo.pause();
-                        playButton.style.opacity = '1';
+                        videoFrame.classList.remove('playing');
                     }
-                });
-
-                verticalVideo.addEventListener('ended', function() {
-                    playButton.style.opacity = '1';
                 });
             }
             
-            // タブ切り替え機能
-            const tabButtons = document.querySelectorAll('.tab-btn');
-            const realityCards = document.querySelectorAll('.reality-card');
-            
-            tabButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    // アクティブなタブボタンのクラスを削除
-                    tabButtons.forEach(btn => btn.classList.remove('active'));
-                    // クリックされたボタンにアクティブクラスを追加
-                    button.classList.add('active');
-                    
-                    // 対応するカードを表示
-                    const tabId = button.getAttribute('data-tab');
-                    realityCards.forEach(card => {
-                        card.classList.remove('active');
-                        if (card.id === tabId) {
-                            card.classList.add('active');
-                        }
-                    });
-                });
-            });
-
             // TOPに戻るボタンの表示/非表示制御
             const backToTop = document.getElementById('back-to-top');
             
