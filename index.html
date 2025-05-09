@@ -106,15 +106,34 @@
                     </div>
                     
                     <div class="gallery-images">
-                        <div class="gallery-image">
-                            <img src="images/toukou.png" alt="動画制限の証拠">
-                            <p class="image-caption">動画主の方が動画の制限があると証言されています！これはどういう事？</p>
+                        <div class="gallery-image-container">
+                            <div class="gallery-image">
+                                <img src="images/toukou.png" alt="動画制限の証拠" class="enlarge-image">
+                                <div class="image-overlay">
+                                    <span class="view-icon">🔍</span>
+                                    <span class="view-text">拡大する</span>
+                                </div>
+                            </div>
+                            <p class="image-caption">動画主の方が動画の制限があると証言されています！<br>これはどういう事？</p>
                         </div>
-                        <div class="gallery-image">
-                            <img src="images/ng.png" alt="チラシ拒否イラスト">
+                        <div class="gallery-image-container">
+                            <div class="gallery-image">
+                                <img src="images/ng.png" alt="チラシ拒否イラスト" class="enlarge-image">
+                                <div class="image-overlay">
+                                    <span class="view-icon">🔍</span>
+                                    <span class="view-text">拡大する</span>
+                                </div>
+                            </div>
                             <p class="image-caption">当団体の活動チラシの掲載が拒否される事態が発生！</p>
                         </div>
                     </div>
+                </div>
+                
+                <!-- 画像拡大用モーダル -->
+                <div id="image-modal" class="image-modal">
+                    <span class="close-modal">&times;</span>
+                    <img id="modal-image" class="modal-content">
+                    <div id="modal-caption"></div>
                 </div>
             </div>
         </section>
@@ -524,6 +543,48 @@
                     backToTop.classList.add('show');
                 } else {
                     backToTop.classList.remove('show');
+                }
+            });
+
+            // 画像拡大表示機能
+            const modal = document.getElementById('image-modal');
+            const modalImage = document.getElementById('modal-image');
+            const modalCaption = document.getElementById('modal-caption');
+            const closeModal = document.querySelector('.close-modal');
+            const enlargeImages = document.querySelectorAll('.enlarge-image');
+            const galleryImages = document.querySelectorAll('.gallery-image');
+
+            // 画像をクリックしたときのイベント
+            enlargeImages.forEach(image => {
+                image.addEventListener('click', function(e) {
+                    e.stopPropagation(); // イベントの伝播を停止
+                    modal.style.display = 'block';
+                    modalImage.src = this.src;
+                    modalCaption.textContent = this.alt;
+                });
+            });
+
+            // 画像コンテナをクリックしたときのイベント（オーバーレイがあっても動作するように）
+            galleryImages.forEach(container => {
+                container.addEventListener('click', function() {
+                    const image = this.querySelector('.enlarge-image');
+                    if (image) {
+                        modal.style.display = 'block';
+                        modalImage.src = image.src;
+                        modalCaption.textContent = image.alt;
+                    }
+                });
+            });
+
+            // モーダルを閉じるボタンのイベント
+            closeModal.addEventListener('click', function() {
+                modal.style.display = 'none';
+            });
+
+            // モーダル背景をクリックして閉じる
+            window.addEventListener('click', function(event) {
+                if (event.target === modal) {
+                    modal.style.display = 'none';
                 }
             });
         });
