@@ -187,7 +187,7 @@
                         <div class="play-button">
                             <span class="play-icon">▶</span>
                         </div>
-                        <video id="vertical-video" preload="auto">
+                        <video id="vertical-video" preload="metadata" poster="movie/youtube.mp4#t=0.1" playsinline muted>
                             <source src="movie/youtube.mp4" type="video/mp4">
                             お使いのブラウザは動画再生に対応していません。
                         </video>
@@ -413,6 +413,48 @@
             // カウントダウンを初期化
             updateElectionCountdown();
             
+            // 縦型動画の初期化と再生機能
+            const videoFrame = document.getElementById('video-frame');
+            const verticalVideo = document.getElementById('vertical-video');
+            const playButton = document.querySelector('.play-button');
+            
+            if (videoFrame && verticalVideo) {
+                // モバイルでサムネイルを確実に表示するための処理
+                verticalVideo.addEventListener('loadeddata', function() {
+                    // 動画が読み込まれたら一時的に再生して最初のフレームを表示し、すぐに一時停止
+                    verticalVideo.currentTime = 0.1;
+                    if (verticalVideo.paused) {
+                        const showFirstFrame = function() {
+                            verticalVideo.pause();
+                            // イベントリスナーを削除（一度だけ実行）
+                            verticalVideo.removeEventListener('timeupdate', showFirstFrame);
+                        };
+                        verticalVideo.addEventListener('timeupdate', showFirstFrame);
+                        verticalVideo.play().catch(function(error) {
+                            console.log('自動再生できませんでした（モバイルの制限）:', error);
+                        });
+                    }
+                });
+                
+                // クリックで再生・一時停止
+                videoFrame.addEventListener('click', function() {
+                    if (verticalVideo.paused) {
+                        verticalVideo.play().then(function() {
+                            playButton.style.opacity = '0';
+                        }).catch(function(error) {
+                            console.log('再生エラー:', error);
+                        });
+                    } else {
+                        verticalVideo.pause();
+                        playButton.style.opacity = '1';
+                    }
+                });
+
+                verticalVideo.addEventListener('ended', function() {
+                    playButton.style.opacity = '1';
+                });
+            }
+            
             // タブ切り替え機能
             const tabButtons = document.querySelectorAll('.tab-btn');
             const realityCards = document.querySelectorAll('.reality-card');
@@ -434,27 +476,6 @@
                     });
                 });
             });
-
-            // 縦型動画再生機能
-            const videoFrame = document.getElementById('video-frame');
-            const verticalVideo = document.getElementById('vertical-video');
-            const playButton = document.querySelector('.play-button');
-            
-            if (videoFrame && verticalVideo) {
-                videoFrame.addEventListener('click', function() {
-                    if (verticalVideo.paused) {
-                        verticalVideo.play();
-                        playButton.style.opacity = '0';
-                    } else {
-                        verticalVideo.pause();
-                        playButton.style.opacity = '1';
-                    }
-                });
-
-                verticalVideo.addEventListener('ended', function() {
-                    playButton.style.opacity = '1';
-                });
-            }
         });
     </script>
 </body>
