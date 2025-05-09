@@ -20,6 +20,70 @@
     
     <!-- メインコンテンツ -->
     <main>
+        <!-- 選挙直前の状況セクション - ファーストビューに配置 -->
+        <section class="election-situation" id="election-situation">
+            <div class="container animated">
+                <h2 class="section-title">八千代市長選挙の直前にこんなことが起きています</h2>
+                <p class="section-subtitle">2025年5月18日投票の市長選を前に、注目すべき状況をご覧ください</p>
+                
+                <!-- 縦型動画コンテナ -->
+                <div class="vertical-video-container">
+                    <div class="vertical-video-frame" id="video-frame">
+                        <div class="play-button">
+                            <span class="play-icon">▶</span>
+                        </div>
+                        <video id="vertical-video" preload="metadata" poster="movie/youtube.mp4#t=0.1" playsinline muted>
+                            <source src="movie/youtube.mp4" type="video/mp4">
+                            お使いのブラウザは動画再生に対応していません。
+                        </video>
+                    </div>
+                    <p class="video-caption">タップまたはクリックで再生</p>
+                    <div class="video-impact-box">
+                        <div class="video-impact-header">
+                            <div class="youtube-icon">
+                                <span class="tube-icon">▶</span>
+                            </div>
+                            <div class="viral-badge">VIRAL VIDEO</div>
+                        </div>
+                        <div class="views-counter">
+                            <div class="counter-number">70</div>
+                            <div class="counter-unit">万回<span class="blink">!</span></div>
+                        </div>
+                        <p class="impact-message">YouTubeで爆発的に拡散されたこの動画を<br>八千代市民のみなさんはどう受け止めますか？</p>
+                        <div class="pulse-indicator"></div>
+                    </div>
+                </div>
+                
+                <div class="image-gallery">
+                    <div class="gallery-description alert-box">
+                        <div class="alert-icon">⚠️</div>
+                        <h3 class="alert-title">これは圧力？</h3>
+                        <div class="alert-content">
+                            <ul class="evidence-list">
+                                <li><span class="evidence-marker">!</span> 当団体の活動チラシの掲載が拒否される事態が発生</li>
+                                <li><span class="evidence-marker">!</span> 連日再生数が伸び続けた動画がいきなり著作権侵害で収益停止という事態になったようです</li>
+                            </ul>
+                            
+                            <div class="alert-question">
+                                <p>これは、<span class="highlight-text">情報発信を妨げる何か</span>が<br>起こっているのでしょうか？</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="gallery-images">
+                        <div class="gallery-image">
+                            <img src="/api/placeholder/400/300" alt="著作権侵害証拠画像">
+                            <p class="image-caption">著作権侵害証拠画像</p>
+                        </div>
+                        <div class="gallery-image">
+                            <img src="/api/placeholder/400/300" alt="チラシ拒否イラスト">
+                            <p class="image-caption">チラシ拒否イラスト</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
         <!-- 問題提起セクション -->
         <section class="problem" id="problem">
             <div class="container animated">
@@ -170,70 +234,6 @@
                     <div class="summary-content">
                         <h3>馴れ合い政治が招く危機</h3>
                         <p>八千代市の馴れ合い政治は、表面上の対立を装いながら、実は水面下で利害が一致した政治家たちによる「なあなあ」の関係で市政が運営されている状態です。これにより市民の声が反映されず、真に必要な改革が進まない危険性があります。<span class="highlight">あと<span id="election-countdown">9</span>日に迫った選挙</span>では、この構造を見抜く目が必要です。</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        <!-- 選挙直前の状況セクション -->
-        <section class="election-situation" id="election-situation">
-            <div class="container animated">
-                <h2 class="section-title">八千代市長選挙の直前にこんなことが起きています</h2>
-                <p class="section-subtitle">2025年5月18日投票の市長選を前に、注目すべき状況をご覧ください</p>
-                
-                <!-- 縦型動画コンテナ -->
-                <div class="vertical-video-container">
-                    <div class="vertical-video-frame" id="video-frame">
-                        <div class="play-button">
-                            <span class="play-icon">▶</span>
-                        </div>
-                        <video id="vertical-video" preload="metadata" poster="movie/youtube.mp4#t=0.1" playsinline muted>
-                            <source src="movie/youtube.mp4" type="video/mp4">
-                            お使いのブラウザは動画再生に対応していません。
-                        </video>
-                    </div>
-                    <p class="video-caption">タップまたはクリックで再生</p>
-                    <div class="video-impact-box">
-                        <div class="video-impact-header">
-                            <div class="youtube-icon">
-                                <span class="tube-icon">▶</span>
-                            </div>
-                            <div class="viral-badge">VIRAL VIDEO</div>
-                        </div>
-                        <div class="views-counter">
-                            <div class="counter-number">70</div>
-                            <div class="counter-unit">万回<span class="blink">!</span></div>
-                        </div>
-                        <p class="impact-message">YouTubeで爆発的に拡散されたこの動画を<br>八千代市民のみなさんはどう受け止めますか？</p>
-                        <div class="pulse-indicator"></div>
-                    </div>
-                </div>
-                
-                <div class="image-gallery">
-                    <div class="gallery-description alert-box">
-                        <div class="alert-icon">⚠️</div>
-                        <h3 class="alert-title">これは圧力？</h3>
-                        <div class="alert-content">
-                            <ul class="evidence-list">
-                                <li><span class="evidence-marker">!</span> 当団体の活動チラシの掲載が拒否される事態が発生</li>
-                                <li><span class="evidence-marker">!</span> 連日再生数が伸び続けた動画がいきなり著作権侵害で収益停止という事態になったようです</li>
-                            </ul>
-                            
-                            <div class="alert-question">
-                                <p>これは、<span class="highlight-text">情報発信を妨げる何か</span>が<br>起こっているのでしょうか？</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="gallery-images">
-                        <div class="gallery-image">
-                            <img src="/api/placeholder/400/300" alt="著作権侵害証拠画像">
-                            <p class="image-caption">著作権侵害証拠画像</p>
-                        </div>
-                        <div class="gallery-image">
-                            <img src="/api/placeholder/400/300" alt="チラシ拒否イラスト">
-                            <p class="image-caption">チラシ拒否イラスト</p>
-                        </div>
                     </div>
                 </div>
             </div>
