@@ -967,6 +967,167 @@ footer {
     }
 }
 
+/* 動画インパクトボックス */
+.video-impact-box {
+    background: linear-gradient(135deg, #f2184f 0%, #f90f43 60%, #900c29 100%);
+    border-radius: 15px;
+    padding: 25px 20px;
+    margin-top: 25px;
+    max-width: 340px;
+    color: white;
+    box-shadow: 0 10px 30px rgba(242, 24, 79, 0.4);
+    position: relative;
+    overflow: hidden;
+}
+
+.video-impact-box::before {
+    content: "";
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    width: 100px;
+    height: 100px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+}
+
+.video-impact-box::after {
+    content: "";
+    position: absolute;
+    bottom: -15px;
+    left: -15px;
+    width: 80px;
+    height: 80px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+}
+
+.video-impact-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.youtube-icon {
+    background-color: #fff;
+    width: 50px;
+    height: 30px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+.tube-icon {
+    color: #f2184f;
+    font-size: 18px;
+}
+
+.viral-badge {
+    background-color: rgba(255, 255, 255, 0.2);
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+    transform: rotate(2deg);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+}
+
+.views-counter {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.counter-number {
+    font-size: 4.5rem;
+    font-weight: 800;
+    line-height: 1;
+    text-shadow: 3px 3px 0 rgba(0, 0, 0, 0.1);
+    position: relative;
+    background: linear-gradient(to bottom, #ffffff 0%, #e6e6e6 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.counter-unit {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-left: 5px;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.blink {
+    animation: blink-animation 1s infinite;
+    margin-left: 2px;
+    font-size: 2rem;
+}
+
+@keyframes blink-animation {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+.impact-message {
+    text-align: center;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-top: 25px;
+    font-weight: 500;
+    position: relative;
+    z-index: 2;
+}
+
+.pulse-indicator {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.9);
+    animation: pulse-animation 2s infinite;
+}
+
+@keyframes pulse-animation {
+    0% {
+        box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(255, 255, 255, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+    }
+}
+
+@media (max-width: 768px) {
+    .video-impact-box {
+        max-width: 300px;
+        padding: 20px 15px;
+    }
+    
+    .counter-number {
+        font-size: 3.5rem;
+    }
+    
+    .counter-unit {
+        font-size: 1.5rem;
+    }
+    
+    .impact-message {
+        font-size: 0.95rem;
+    }
+}
+
 /* アラートボックス（圧力警告用）のスタイル */
 .alert-box {
     background-color: #fff6f6;
