@@ -383,7 +383,7 @@
                 <p class="section-subtitle">八千代市の課題や改善点について、あなたのご意見をお寄せください</p>
                 
                 <div class="form-container">
-                    <form id="opinion-form" onsubmit="return handleFormSubmit(event)">
+                    <form id="opinion-form" action="mailto:info@yachiyo-shisei.sub.jp" method="post" enctype="text/plain" onsubmit="return handleFormSubmit(event)">
                         <div class="form-group">
                             <label for="name">お名前（任意）</label>
                             <input type="text" id="name" name="name" placeholder="山田 太郎">
@@ -408,15 +408,16 @@
                         </div>
                         
                         <div class="form-group">
-                            <label for="topic">関心のある市政テーマ（複数選択可）</label>
+                            <label for="topics">関心のある市政テーマ（複数選択可）</label>
                             <div class="checkbox-group">
-                                <label><input type="checkbox" name="topic" value="教育"> 教育・子育て</label>
-                                <label><input type="checkbox" name="topic" value="環境"> 環境・自然</label>
-                                <label><input type="checkbox" name="topic" value="交通"> 交通・インフラ</label>
-                                <label><input type="checkbox" name="topic" value="福祉"> 福祉・医療</label>
-                                <label><input type="checkbox" name="topic" value="財政"> 財政・税金</label>
-                                <label><input type="checkbox" name="topic" value="その他"> その他</label>
+                                <label><input type="checkbox" class="topic-checkbox" value="教育"> 教育・子育て</label>
+                                <label><input type="checkbox" class="topic-checkbox" value="環境"> 環境・自然</label>
+                                <label><input type="checkbox" class="topic-checkbox" value="交通"> 交通・インフラ</label>
+                                <label><input type="checkbox" class="topic-checkbox" value="福祉"> 福祉・医療</label>
+                                <label><input type="checkbox" class="topic-checkbox" value="財政"> 財政・税金</label>
+                                <label><input type="checkbox" class="topic-checkbox" value="その他"> その他</label>
                             </div>
+                            <input type="hidden" id="topics" name="topics" value="">
                         </div>
                         
                         <div class="form-group">
@@ -476,42 +477,43 @@
     <script>
         // フォーム送信処理
         function handleFormSubmit(event) {
-            event.preventDefault();
-            
-            // フォームの値を取得
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const area = document.getElementById('area').value;
-            const opinion = document.getElementById('opinion').value;
-            const request = document.getElementById('request').value;
-            
             // 入力バリデーション
+            const opinion = document.getElementById('opinion').value;
             if (!opinion) {
+                event.preventDefault();
                 alert('ご意見・ご提案を入力してください');
                 return false;
             }
             
-            // メール送信用に情報を保存（LocalStorageに一時保存も可能）
-            try {
-                // メール送信処理（実際の実装では、サーバーサイドの処理になります）
-                const mailtoURL = `mailto:info@yachiyo-shisei.sub.jp?subject=八千代市政へのご意見・ご提案&body=お名前: ${name}%0D%0A%0D%0Aメールアドレス: ${email}%0D%0A%0D%0Aお住まいの地域: ${area}%0D%0A%0D%0Aご意見・ご提案:%0D%0A${encodeURIComponent(opinion)}%0D%0A%0D%0A市政に望むこと:%0D%0A${encodeURIComponent(request)}`;
-                
-                // メール送信用のリンクを作成して自動クリック（実際の運用では注意が必要）
-                const mailLink = document.createElement('a');
-                mailLink.href = mailtoURL;
-                mailLink.style.display = 'none';
-                document.body.appendChild(mailLink);
-                mailLink.click();
-                document.body.removeChild(mailLink);
-                
-                // サンクスページへリダイレクト
-                window.location.href = 'thanks.html';
-            } catch (error) {
-                console.error('送信エラー:', error);
-                alert('送信中にエラーが発生しました。もう一度お試しください。');
-            }
+            // フォームの値を取得してフォーム送信前に確認
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const area = document.getElementById('area').value;
+            const request = document.getElementById('request').value;
             
-            return false;
+            // チェックしたテーマを集約
+            let selectedTopics = [];
+            document.querySelectorAll('.topic-checkbox:checked').forEach(checkbox => {
+                selectedTopics.push(checkbox.value);
+            });
+            
+            // フォームデータの整形
+            document.getElementById('name').value = "お名前: " + name;
+            document.getElementById('email').value = "メールアドレス: " + email;
+            document.getElementById('area').value = "お住まいの地域: " + area;
+            document.getElementById('topics').value = "関心のある市政テーマ: " + (selectedTopics.length > 0 ? selectedTopics.join(', ') : "なし");
+            document.getElementById('opinion').value = "ご意見・ご提案:\n" + opinion;
+            document.getElementById('request').value = "市政に望むこと:\n" + request;
+            
+            // 送信確認のアラートを表示
+            alert('ご意見をお送りいただき、ありがとうございます。メール送信画面が開きます。送信完了後にサンクスページへ移動します。');
+            
+            // 送信後にサンクスページへリダイレクト（一部のメーラーは戻ってこないことがある）
+            setTimeout(function() {
+                window.location.href = 'thanks.html';
+            }, 2000);
+            
+            return true; // フォームの実際の送信を許可
         }
 
         document.addEventListener('DOMContentLoaded', function() {
