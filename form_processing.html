@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>処理中... - 馴れ合いの市政をぶち壊す会</title>
+    <!-- フォームデータを処理してサンクスページへリダイレクトするためのファイル -->
+    
+    <!-- Google Analytics トラッキングコード -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NLSG0WPSEM"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-NLSG0WPSEM');
+    </script>
+    <script>
+        // URLからパラメータを取得する関数
+        function getUrlParameter(name) {
+            name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+            var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+            var results = regex.exec(location.search);
+            return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+        }
+
+        // フォーム送信後の処理
+        document.addEventListener('DOMContentLoaded', function() {
+            // 2秒後にサンクスページへリダイレクト
+            setTimeout(function() {
+                window.location.href = 'thanks.html';
+            }, 2000);
+        });
+    </script>
+    <style>
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            text-align: center;
+        }
+        .loading-container {
+            padding: 30px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            max-width: 500px;
+            width: 90%;
+        }
+        .loading-spinner {
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid #004c88;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 2s linear infinite;
+            margin: 0 auto 20px;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        h1 {
+            color: #004c88;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        p {
+            color: #555;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+    <div class="loading-container">
+        <div class="loading-spinner"></div>
+        <h1>ご意見を送信しています</h1>
+        <p>送信完了までしばらくお待ちください。<br>数秒後に自動的にサンクスページに移動します。</p>
+    </div>
+</body>
+</html>
