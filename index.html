@@ -383,7 +383,7 @@
                 <p class="section-subtitle">八千代市の課題や改善点について、あなたのご意見をお寄せください</p>
                 
                 <div class="form-container">
-                    <form id="opinion-form" action="mailto:info@yachiyo-shisei.sub.jp" method="post" enctype="text/plain">
+                    <form id="opinion-form" onsubmit="return handleFormSubmit(event)">
                         <div class="form-group">
                             <label for="name">お名前（任意）</label>
                             <input type="text" id="name" name="name" placeholder="山田 太郎">
@@ -474,11 +474,51 @@
     
     <!-- JavaScript -->
     <script>
+        // フォーム送信処理
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            
+            // フォームの値を取得
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const area = document.getElementById('area').value;
+            const opinion = document.getElementById('opinion').value;
+            const request = document.getElementById('request').value;
+            
+            // 入力バリデーション
+            if (!opinion) {
+                alert('ご意見・ご提案を入力してください');
+                return false;
+            }
+            
+            // メール送信用に情報を保存（LocalStorageに一時保存も可能）
+            try {
+                // メール送信処理（実際の実装では、サーバーサイドの処理になります）
+                const mailtoURL = `mailto:info@yachiyo-shisei.sub.jp?subject=八千代市政へのご意見・ご提案&body=お名前: ${name}%0D%0A%0D%0Aメールアドレス: ${email}%0D%0A%0D%0Aお住まいの地域: ${area}%0D%0A%0D%0Aご意見・ご提案:%0D%0A${encodeURIComponent(opinion)}%0D%0A%0D%0A市政に望むこと:%0D%0A${encodeURIComponent(request)}`;
+                
+                // メール送信用のリンクを作成して自動クリック（実際の運用では注意が必要）
+                const mailLink = document.createElement('a');
+                mailLink.href = mailtoURL;
+                mailLink.style.display = 'none';
+                document.body.appendChild(mailLink);
+                mailLink.click();
+                document.body.removeChild(mailLink);
+                
+                // サンクスページへリダイレクト
+                window.location.href = 'thanks.html';
+            } catch (error) {
+                console.error('送信エラー:', error);
+                alert('送信中にエラーが発生しました。もう一度お試しください。');
+            }
+            
+            return false;
+        }
+
         document.addEventListener('DOMContentLoaded', function() {
             // 選挙日までのカウントダウン機能
             function updateElectionCountdown() {
-                // 固定日付を使用（2025年5月9日を現在日として設定）
-                const today = new Date(2025, 4, 9); // JavaScriptでは月は0始まりなので、5月は4
+                // 固定日付を使用（2025年5月11日を現在日として設定）
+                const today = new Date(2025, 4, 11); // JavaScriptでは月は0始まりなので、5月は4
                 const electionDate = new Date(2025, 4, 18); // 5月18日
                 
                 // 日付のみを比較するため、時間情報をリセット

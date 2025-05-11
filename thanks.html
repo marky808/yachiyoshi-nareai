@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ご意見をありがとうございます - 馴れ合いの市政をぶち壊す会</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- Google Analytics トラッキングコード -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-XXXXXXXXXX');
+    </script>
+    
+    <style>
+        .thanks-container {
+            text-align: center;
+            padding: 60px 20px;
+            max-width: 800px;
+            margin: 0 auto;
+            min-height: 60vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .thanks-icon {
+            font-size: 72px;
+            margin-bottom: 30px;
+        }
+        
+        .thanks-title {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #004c88;
+        }
+        
+        .thanks-message {
+            font-size: 18px;
+            line-height: 1.7;
+            margin-bottom: 40px;
+            color: #333;
+        }
+        
+        .action-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .action-button {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: #004c88;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .action-button:hover {
+            background-color: #003366;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 76, 136, 0.2);
+        }
+        
+        .action-button.secondary {
+            background-color: #eaeaea;
+            color: #333;
+        }
+        
+        .action-button.secondary:hover {
+            background-color: #d1d1d1;
+        }
+        
+        .countdown-section {
+            margin-top: 50px;
+            padding: 20px;
+            border-radius: 8px;
+            background-color: #f8f8f8;
+        }
+        
+        .countdown-info {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        
+        .countdown-number {
+            font-size: 28px;
+            font-weight: 700;
+            color: #e74c3c;
+            margin: 0 5px;
+        }
+    </style>
+</head>
+<body>
+    <!-- ヘッダーセクション -->
+    <header>
+        <div class="header-image">
+            <div class="header-content">
+                <h1>馴れ合いの市政をぶち壊す会</h1>
+                <p class="tagline">市民が主役の、透明で開かれた市政を目指して</p>
+            </div>
+        </div>
+    </header>
+    
+    <!-- メインコンテンツ -->
+    <main>
+        <section class="thanks-section">
+            <div class="thanks-container">
+                <div class="thanks-icon">✅</div>
+                <h2 class="thanks-title">ご意見をお寄せいただき、ありがとうございます</h2>
+                <p class="thanks-message">
+                    いただいたご意見は、八千代市の未来をより良いものにするための貴重な資料として活用させていただきます。<br>
+                    市民の皆様の声が、八千代市政を変える大きな力になります。<br>
+                    引き続き、当会の活動へのご支援をよろしくお願いいたします。
+                </p>
+                
+                <div class="action-buttons">
+                    <a href="index.html" class="action-button">トップページに戻る</a>
+                    <a href="index.html#reality" class="action-button secondary">馴れ合い政治の実態を見る</a>
+                </div>
+                
+                <div class="countdown-section">
+                    <p class="countdown-info">
+                        八千代市長選挙まであと<span class="countdown-number" id="election-countdown">7</span>日です。
+                        <br>投票に行きましょう！
+                    </p>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <!-- フッター -->
+    <footer>
+        <div class="container footer-container">
+            <div class="footer-section">
+                <h3 class="footer-title">馴れ合いの市政をぶち壊す会</h3>
+                <p>市民が主役の、透明で開かれた市政を目指して活動しています。</p>
+            </div>
+            <div class="footer-section">
+                <h3 class="footer-title">リンク</h3>
+                <ul class="footer-links">
+                    <li><a href="index.html#problem">問題提起</a></li>
+                    <li><a href="index.html#reality">馴れ合い政治の実態</a></li>
+                    <li><a href="index.html#election-situation">選挙直前の状況</a></li>
+                    <li><a href="index.html#impact">市民への影響</a></li>
+                    <li><a href="index.html#solution">解決策提案</a></li>
+                    <li><a href="index.html#feedback-form">ご意見フォーム</a></li>
+                    <li><a href="index.html">ページトップへ</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 馴れ合いの市政をぶち壊す会. All rights reserved.</p>
+        </div>
+    </footer>
+    
+    <!-- JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 選挙日までのカウントダウン機能
+            function updateElectionCountdown() {
+                // 固定日付を使用（2025年5月11日を現在日として設定）
+                const today = new Date(2025, 4, 11); // JavaScriptでは月は0始まりなので、5月は4
+                const electionDate = new Date(2025, 4, 18); // 5月18日
+                
+                // 日付のみを比較するため、時間情報をリセット
+                today.setHours(0, 0, 0, 0);
+                electionDate.setHours(0, 0, 0, 0);
+                
+                // 残り日数を計算（ミリ秒を日数に変換）
+                const diffTime = electionDate - today;
+                const daysRemaining = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+                
+                // カウントダウン表示を更新
+                const countdownElement = document.getElementById('election-countdown');
+                if (countdownElement) {
+                    countdownElement.textContent = daysRemaining;
+                }
+            }
+            
+            // カウントダウンを初期化
+            updateElectionCountdown();
+        });
+    </script>
+</body>
+</html>
